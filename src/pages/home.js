@@ -7,25 +7,25 @@ class home extends Component {
         screams: null
     }
     componentDidMount(){//get server stuff
-        axios.get('/screams')
-        .then( res=>{
+        axios.get('/screams')//TODO: fix this
+        .then( res => {
             console.log(res.data);
             this.setState({
-                Screams: res.data
+                screams: res.data
             });
         })
         .catch(err=> console.log(err))
     }
     render() {
         let recentScreamsMarkup = this.state.screams ? (
-        this.state.screams.map(scream => <Scream scream={scream}/>)
+        this.state.screams.map(scream => <Scream key = {scream.screamId} scream={scream}/>)
         ) : (<p>Loading...</p>);
         return (
             <Grid container spacing={16}>
                 <Grid item sm={8} xs={12}>
                     {recentScreamsMarkup}
                 </Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item sm={4} xs={12}>
                     <p>Profile...</p>
                 </Grid>
             </Grid>
