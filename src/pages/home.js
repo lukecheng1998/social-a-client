@@ -11,8 +11,8 @@ class home extends Component {
         .then( res=>{
             console.log(res.data);
             this.setState({
-                screams: res.data
-            })
+                Screams: res.data
+            });
         })
         .catch(err=> console.log(err))
     }

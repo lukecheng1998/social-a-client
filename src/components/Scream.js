@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import Link from 'react-router-dom/Link';
 //MUI stuff
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 //import { Typography } from '@material-ui/core';
@@ -24,7 +23,7 @@ class Scream extends Component {
                     image = {userImage}
                     title="Profile image" />
                 <CardContent>
-                    <Typography variant = "h5">{userHandle}</Typography>
+                    <Typography variant = "h5"component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
                     <Typography variant="body2" color= "textSecondary">{createdAt}</Typography>
                     <Typography variant="body1">{body}</Typography>
                 </CardContent>
@@ -32,4 +31,4 @@ class Scream extends Component {
         )
     }
 }
-export default withStyles(styles)(Scream)
+export default withStyles(styles)(Scream);
