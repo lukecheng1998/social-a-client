@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import PostScream from './PostScream';
 //require("react-router-dom").Link;
 import MyButton from '../util/MyButton';
 //MUI stuff
@@ -20,9 +21,7 @@ class navbar extends Component {
                 <ToolBar className="nav-container">
                     {authenticated ? (
                         <Fragment>
-                            <MyButton tip="Post a Scream!">
-                                <AddIcon  />
-                            </MyButton>
+                            <PostScream />
                             <Link to="/">
                                 <MyButton tip="Home">
                                     <HomeIcon  />
