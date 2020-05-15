@@ -1,4 +1,4 @@
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, SET_AUTHENTICATED, LOADING_USER } from '../types'
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, SET_AUTHENTICATED, LOADING_USER, LIKE_SCREAM, UNLIKE_SCREAM } from '../types'
 
 const initialState = {
     authenticated: false,
@@ -7,8 +7,8 @@ const initialState = {
     likes: [],
     notifications: []
 };
-export default function(state = initialState, action){
-    switch(action.type){
+export default function (state = initialState, action) {
+    switch (action.type) {
         case SET_AUTHENTICATED:
             return {
                 ...state,
@@ -26,6 +26,21 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 loading: true
+            }
+        case LIKE_SCREAM:
+            return {
+                ...state,
+                likes: [
+                    ...state.likes, {
+                        userHandle: state.credentials.handle,
+                        screamId: action.payload.screamId
+                    }
+                ]
+            }
+        case UNLIKE_SCREAM:
+            return {
+                ...state,
+                likes: state.likes.filter(like => like.screamId !== action.payload.screamId)
             }
         default:
             return state;
