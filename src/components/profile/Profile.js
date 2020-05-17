@@ -3,24 +3,22 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
-import EditDetails from '../components/EditDetails';
+import EditDetails from './EditDetails';
 //MUI stuff
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 //Icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
 //Redux
 import { connect } from 'react-redux';
-import {logoutUser, uploadImage} from '../redux/actions/userActions';
+import {logoutUser, uploadImage} from '../../redux/actions/userActions';
 const styles = (theme) => ({
     paper: {
         padding: 20

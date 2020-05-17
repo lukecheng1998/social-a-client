@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './screamDialog'
 //MUI stuff
@@ -77,6 +77,7 @@ class Scream extends Component {
                     <ScreamDialog 
                     screamId={screamId}
                     userHandle={userHandle}
+                    openDialog={this.props.openDialog}
                     />
                 </CardContent>
             </Card>
@@ -87,7 +88,8 @@ Scream.propTypes = {
     
     user: PropTypes.object.isRequired,
     scream: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 }
 const mapStateToProps = state => ({
     user:state.user
