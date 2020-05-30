@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
@@ -21,6 +21,7 @@ import login from './pages/login';
 import signup from './pages/signup';
 import axios from 'axios';
 import user from './pages/user';
+import chat from './pages/chat';
 const theme = createMuiTheme(themeFile);
 
 axios.defaults.baseURL = 'https://us-central1-social-a-f3a70.cloudfunctions.net/api';
@@ -57,6 +58,7 @@ function App() {
               <AuthRoute exact path="/signup" component={signup}  />
               <Route exact path="/users/:handle" component={user} />
               <Route exact path="/users/:handle/scream/:screamId" component={user} />
+              <Route exact path ="/chat" component={chat} />
             </Switch>
           </div>
         </Router>

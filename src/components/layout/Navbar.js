@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from './Notifications';
+import CommentIcon from '@material-ui/icons/Comment';
 class navbar extends Component {
     render() {
         const { authenticated } = this.props
@@ -29,6 +30,11 @@ class navbar extends Component {
                             </Link>
 
                             <Notifications />
+                            <Link to="/Chat">
+                                <MyButton tip="Chat">
+                                    <CommentIcon />
+                                </MyButton>
+                            </Link>
 
                         </Fragment>
                     ) : (<Fragment>
