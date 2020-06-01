@@ -8,10 +8,12 @@ import {
   SET_SCREAM,
   SUBMIT_COMMENT,
   SEND_A_CHAT,
+  SET_CHATS,
 } from "../types";
 
 const initialState = {
   chats: [],
+  chat: {},
   screams: [],
   scream: {},
   loading: false,
@@ -71,6 +73,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         chats: [action.payload, ...state.chats],
+      };
+    case SET_CHATS:
+      return {
+        ...state,
+        screams: action.payload,
+        loading: false,
       };
     default:
       return state;

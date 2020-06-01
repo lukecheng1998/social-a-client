@@ -20,3 +20,4 @@ export const POST_SCREAM = 'POST_SCREAM';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 export const MARK_NOTIFICATIONS_READ = 'MARK_NOTIFICATIONS_READ';
 export const SEND_A_CHAT = 'SEND_A_CHAT';
+export const SET_CHATS = 'SET_CHATS';

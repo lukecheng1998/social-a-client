@@ -12,25 +12,27 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { sendAChat, clearErrors } from "../redux/actions/dataActions";
 import { connect } from "react-redux";
 
+
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+
+import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
+import MyButton from "../util/MyButton";
 const styles = (theme) => ({
   ...theme.spreadThis,
 });
 
-export class chat extends Component {
+class chat extends Component {
   state = {
-    body: "",
+    body: '',
     errors: {},
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
         errors: nextProps.UI.errors,
-      });
-    }
-    if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({
-        body: "",
-        errors: {},
       });
     }
   }
@@ -41,18 +43,24 @@ export class chat extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.sendAChat({body: this.state.body})
+    this.props.sendAChat({ body: this.state.body });
   };
   render() {
     const { errors } = this.state;
     const {
       classes,
+      
       UI: { loading },
     } = this.props;
 
     return (
       <Grid container>
-        <Typography variant="h2">Chat with people!</Typography>
+        <Typography variant="h2" align="center">
+          Chat with people!
+        </Typography>
+        <Grid container align="center">
+          
+        </Grid>
         <Grid container align="center">
           <form onSubmit={this.handleSubmit}>
             <TextField
@@ -68,21 +76,17 @@ export class chat extends Component {
               onChange={this.handleChange}
               fullWidth
             />
-            <Button
+            <MyButton
               type="submit"
+              tip="Send"
               variant="contained"
               color="primary"
               className={classes.submitButton}
               disabled={loading}
+              
             >
-              Send
-              {loading && (
-                <CircularProgress
-                  size={30}
-                  className={classes.progressSpinner}
-                />
-              )}
-            </Button>
+             <SendIcon color="primary"/>
+            </MyButton>
           </form>
         </Grid>
       </Grid>

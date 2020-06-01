@@ -12,6 +12,7 @@ import {
   SET_SCREAM,
   STOP_LOADING_UI,
   SEND_A_CHAT,
+  SET_CHATS,
 } from "../types";
 import axios from "axios";
 //submit a comment
@@ -101,11 +102,28 @@ export const deleteScream = (screamId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-
+export const getChats = () => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+    axios
+      .get("/chats")
+      .then((res) => {
+        dispatch({
+          type: SET_CHATS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: SET_CHATS,
+          payload: [],
+        });
+      });
+  };
 export const sendAChat = (newChat) => (dispatch) => {
   dispatch({ type: LOADING_UI });
+  
   axios
-    .post("/chats", newChat)
+    .post('/chat', newChat)
     .then((res) => {
       dispatch({
         type: SEND_A_CHAT,
@@ -114,6 +132,9 @@ export const sendAChat = (newChat) => (dispatch) => {
       dispatch(clearErrors());
     })
     .catch((err) => {
+      if(err.response){
+        console.log(err.response.data);
+      }
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data,
