@@ -12,13 +12,12 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { sendAChat, clearErrors } from "../redux/actions/dataActions";
 import { connect } from "react-redux";
 
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-
-import { Link } from 'react-router-dom';
-import dayjs from 'dayjs';
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 import MyButton from "../util/MyButton";
 const styles = (theme) => ({
   ...theme.spreadThis,
@@ -26,13 +25,19 @@ const styles = (theme) => ({
 
 class chat extends Component {
   state = {
-    body: '',
+    body: "",
     errors: {},
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
         errors: nextProps.UI.errors,
+      });
+    }
+    if (!nextProps.UI.errors && !nextProps.UI.loading) {
+      this.setState({
+        body: "",
+        errors: {},
       });
     }
   }
@@ -49,7 +54,7 @@ class chat extends Component {
     const { errors } = this.state;
     const {
       classes,
-      
+
       UI: { loading },
     } = this.props;
 
@@ -58,9 +63,7 @@ class chat extends Component {
         <Typography variant="h2" align="center">
           Chat with people!
         </Typography>
-        <Grid container align="center">
-          
-        </Grid>
+        <Grid container align="center"></Grid>
         <Grid container align="center">
           <form onSubmit={this.handleSubmit}>
             <TextField
@@ -68,7 +71,7 @@ class chat extends Component {
               type="text"
               label="Chat"
               multiline
-              rows="3"
+              rows="2"
               placeholder="Talk to your fellow idiots"
               error={errors.body ? true : false}
               helperText={errors.body}
@@ -76,17 +79,21 @@ class chat extends Component {
               onChange={this.handleChange}
               fullWidth
             />
-            <MyButton
+            <Button
               type="submit"
-              tip="Send"
               variant="contained"
               color="primary"
               className={classes.submitButton}
               disabled={loading}
-              
             >
-             <SendIcon color="primary"/>
-            </MyButton>
+              Send
+              {loading && (
+                <CircularProgress
+                  size={30}
+                  className={classes.progressSpinner}
+                />
+              )}
+            </Button>
           </form>
         </Grid>
       </Grid>

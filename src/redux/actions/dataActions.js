@@ -123,7 +123,7 @@ export const sendAChat = (newChat) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   
   axios
-    .post('/chat', newChat)
+    .post('/chats', newChat)
     .then((res) => {
       dispatch({
         type: SEND_A_CHAT,
